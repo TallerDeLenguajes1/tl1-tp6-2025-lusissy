@@ -1,53 +1,66 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
-bool esNumero;
-int op = 0;
+Console.WriteLine("=== CALCULADORA V2 ===");
 
-do
-{
-Console.WriteLine("Ingrese la operación que desea realizar:");
-Console.WriteLine("1. Sumar\n2. Restar\n3. Multiplicar\n4. Dividir\n0. Salir");
-string opcion = Console.ReadLine();
-esNumero = int.TryParse(opcion, out op);
+        // 1. Solicitar un número y calcular operaciones avanzadas
+        double numero = 0;
+        bool valido = false;
 
-if (esNumero && op > 0 && op <= 4)
-{
-    Console.Write("Ingrese el primer número: ");
-    double numero1 = Convert.ToDouble(Console.ReadLine());
+        while (!valido)
+        {
+            Console.Write("Ingrese un número: ");
+            string entrada = Console.ReadLine();
+            valido = double.TryParse(entrada, out numero);
 
-    Console.Write("Ingrese el segundo número: ");
-    double numero2 = Convert.ToDouble(Console.ReadLine());
-
-     switch (op)
-     {
-         case 1:
-             Console.WriteLine("Resultado: " + (numero1 + numero2));
-             break;
-
-        case 2:
-            Console.WriteLine("Resultado: " + (numero1 - numero2));
-            break;
-
-        case 3:
-            Console.WriteLine("Resultado: " + (numero1 * numero2));
-            break;
-
-        case 4:
-            if (numero2 != 0)
+            if (!valido)
             {
-                Console.WriteLine("Resultado: " + (numero1 / numero2));
+                Console.WriteLine("Entrada inválida. Intente de nuevo.");
             }
-            else
+        }
+
+        Console.WriteLine("Valor absoluto: " + Math.Abs(numero));
+        Console.WriteLine("Cuadrado: " + (numero * numero));
+        if (numero >= 0)
+        {
+            Console.WriteLine("Raíz cuadrada: " + Math.Sqrt(numero));
+        }
+        else
+        {
+            Console.WriteLine("Raíz cuadrada: No se puede calcular la raíz cuadrada de un número negativo.");
+        }
+        Console.WriteLine("Seno: " + Math.Sin(numero));
+        Console.WriteLine("Coseno: " + Math.Cos(numero));
+        Console.WriteLine("Parte entera: " + Math.Truncate(numero));
+
+        Console.WriteLine("\n=== Comparación entre dos números ===");
+
+        // 2. Solicitar dos números para comparar
+        double num1 = 0, num2 = 0;
+        bool valido1 = false, valido2 = false;
+
+        while (!valido1)
+        {
+            Console.Write("Ingrese el primer número: ");
+            string entrada1 = Console.ReadLine();
+            valido1 = double.TryParse(entrada1, out num1);
+            if (!valido1)
             {
-                Console.WriteLine("Error: No se puede dividir por cero.");
+                Console.WriteLine("Entrada inválida. Intente de nuevo.");
             }
-            break;
-    }
-}else if (op != 0)
-{
-    Console.WriteLine("Opción no válida. Intente de nuevo.");
-}
+        }
 
-} while (op != 0);
+        while (!valido2)
+        {
+            Console.Write("Ingrese el segundo número: ");
+            string entrada2 = Console.ReadLine();
+            valido2 = double.TryParse(entrada2, out num2);
+            if (!valido2)
+            {
+                Console.WriteLine("Entrada inválida. Intente de nuevo.");
+            }
+        }
 
-Console.WriteLine("Gracias por usar la calculadora.");
+        Console.WriteLine("Máximo: " + Math.Max(num1, num2));
+        Console.WriteLine("Mínimo: " + Math.Min(num1, num2));
+
+        Console.WriteLine("\nGracias por usar la Calculadora V2.");
